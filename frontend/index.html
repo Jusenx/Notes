@@ -1,81 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bloco de Notas - Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 400px;
-      margin: 50px auto;
-      padding: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-    }
-    input, button {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 8px;
-    }
-    #tokenBox {
-      background: #f0f0f0;
-      padding: 10px;
-      word-break: break-word;
-      border-radius: 5px;
-    }
-  </style>
-</head>
-<body>
-  <h2>Cadastro</h2>
-  <input type="email" id="registerEmail" placeholder="Email" />
-  <input type="password" id="registerPassword" placeholder="Senha" />
-  <button onclick="register()">Cadastrar</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bloco de Notas - Login</title>
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <h2>Cadastro</h2>
+    <input type="email" id="registerEmail" placeholder="Email" />
+    <input type="password" id="registerPassword" placeholder="Senha" />
+    <button onclick="register()">Cadastrar</button>
 
-  <h2>Login</h2>
-  <input type="email" id="loginEmail" placeholder="Email" />
-  <input type="password" id="loginPassword" placeholder="Senha" />
-  <button onclick="login()">Entrar</button>
+    <h2>Login</h2>
+    <input type="email" id="loginEmail" placeholder="Email" />
+    <input type="password" id="loginPassword" placeholder="Senha" />
+    <button onclick="login()">Entrar</button>
 
-  <h3>Token:</h3>
-  <div id="tokenBox">Nenhum token</div>
+    <h3>Token:</h3>
+    <div id="tokenBox">Nenhum token</div>
 
-  <script>
-    const API_URL = 'http://localhost:3000/auth';
-
-    async function register() {
-      const email = document.getElementById('registerEmail').value;
-      const password = document.getElementById('registerPassword').value;
-
-      const res = await fetch(`${API_URL}/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-      alert(data.message || data.error);
-    }
-
-    async function login() {
-      const email = document.getElementById('loginEmail').value;
-      const password = document.getElementById('loginPassword').value;
-
-      const res = await fetch(`${API_URL}/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-
-      if (data.token) {
-        document.getElementById('tokenBox').textContent = data.token;
-        alert('Login realizado com sucesso!');
-      } else {
-        alert(data.error || 'Erro ao fazer login');
-      }
-    }
-  </script>
-</body>
+    <script src="script/script.js"></script>
+  </body>
 </html>
